@@ -1,6 +1,58 @@
-*{
-    background-color: rgb(226, 190, 123);
+@font-face {
+    font-family: 'titleFotn';
+    src: url('fonts/SuperAdorable.ttf');
+}
+
+@font-face {
+    font-family: 'simbols';
+    src: url('fonts/DogRough.otf');
+}
+
+* {
+    background-color: rgb(178, 182, 233);
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+.gameTitle {
+    text-align: center;
+    font-family: 'titleFotn', sans-serif;
+    font-size: 6rem;
+    color: rgb(1, 0, 22);
+    margin: 20px;
+}
+
+.game {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.board {
+    background-color: rgb(14, 71, 121);
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+    height: 700px;
+    border: 5px solid rgb(14, 71, 121);
+}
+
+.square {
+    width: 33.33%;
+    height: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15rem;
+    font-family: 'simbols', sans-serif;
+    border: 5px solid rgb(14, 71, 121);
+}
+
+.x {
+    color: rgb(0, 0, 0);
+}
+
+.o {
+    color: rgb(224, 48, 48);
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,38 @@
     <link rel="stylesheet" href="styles.css">
     <script src="init.js"></script>
 </head>
+
 <body>
     <header>
-        <h1>TIC-TAC-TOE</h1>
+        <h1 class="gameTitle">TIC-TAC-TOE</h1>
     </header>
-    <main class="game">
-        <div class="board">
-            <div class="square square1"></div>
-            <div class="square square2"></div>
-            <div class="square square3"></div>
-            <div class="square square4"></div>
-            <div class="square square5"></div>
-            <div class="square square6"></div>
-            <div class="square square7"></div>
-            <div class="square square8"></div>
-            <div class="square square9"></div>
+    <main>
+
+        <div class="game">
+            <div class="player">
+                <h2>Player 1</h2>
+                <h3 id="scorePlayer1">0</h3>
+            </div>
+
+            <div class="board">
+                <div class="square square1"></div>
+                <div class="square square2"></div>
+                <div class="square square3"></div>
+                <div class="square square4"></div>
+                <div class="square square5"></div>
+                <div class="square square6"></div>
+                <div class="square square7"></div>
+                <div class="square square8"></div>
+                <div class="square square9"></div>
+            </div>
+
+            <div class="player">
+                <h2>Player 2</h2>
+                <h3 id="scorePlayer2">0</h3>
+            </div>
         </div>
+
     </main>
 </body>
+
 </html>
