@@ -6,14 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tic-tac-toe</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="init.js"></script>
 </head>
 
 <body>
     <header>
         <h1 class="gameTitle">TIC-TAC-TOE</h1>
     </header>
-    <main>
+    <main class="containerGame">
+        <div class="containerOptions">
+            <form action="" class="fromOptions">
+                <div class="containerFormOptions">
+                    Playing with the machine <input type="checkbox" class="machineMode" checked>
+                    <h2>Game Tokens</h2>
+                    <div class="playerToken">
+                        <h3>Player 1</h3>
+                        <select name="player1GameToken" class="boxToken">
+                            <option value="x">X</option>
+                            <option value="o">O</option>
+                            
+                        </select>
+                    </div>
+                    <div class="playerToken">
+                        <h3>Player 2</h3> 
+                        <select name="player2GameToken" class="boxToken">
+                            <option value="o">O</option>
+                            <option value="x">X</option>
+                        </select>
+                    </div>
+                    <button class="buttonStart">Start the Game</button>
+                </div>
+            </form>
+        </div>
 
         <div class="game">
             <div class="player">
@@ -38,8 +61,10 @@
                 <h3 id="scorePlayer2">0</h3>
             </div>
         </div>
+        <button class="resetGame">Reset Game</button>
 
     </main>
+    <script src="init.js"></script>
 </body>
 
 </html>
