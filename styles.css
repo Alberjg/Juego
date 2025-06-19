@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'titleFont';
+    src: url('fonts/SuperAdorable.ttf');
+}
+
+@font-face {
+    font-family: 'simbols';
+    src: url('fonts/DogRough.otf');
+}
+
+* {
+    background-color: rgb(178, 182, 233);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+.gameTitle {
+    text-align: center;
+    font-family: 'titleFont', sans-serif;
+    font-size: 6rem;
+    color: rgb(1, 0, 22);
+    margin: 20px;
+}
+.containerGame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.containerOptions{
+    display: flex; /*poner en none desde javascript*/
+    justify-content: center;
+    align-items: center;
+    font-family: 'titleFont', sans-serif;
+    font-size: 3rem;
+    width: 700px;
+    height: 700px;
+    border: 10px solid rgb(14, 71, 121);
+}
+
+.containerFormOptions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.machineMode{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 40px;
+}
+
+.playerToken{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 80px;
+    font-size: 2rem;
+
+}
+
+.buttonStart{
+    width: 300px;
+    height: 80px;
+    font-size: 2rem;
+    font-family: 'titleFont', sans-serif;
+    border: none;
+    cursor: pointer;
+    border: 5px rgb(14, 71, 121) solid;
+    margin: 10px;
+}
+
+.game {
+    display: none; /* poner en flex desde javascript*/
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+    height: 700px;
+    /* border: 5px solid rgb(14, 71, 121); */
+}
+
+.square {
+    width: 33.33%;
+    height: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15rem;
+    font-family: 'simbols', sans-serif;
+    border: 5px solid rgb(14, 71, 121);
+}
+
+.x {
+    color: rgb(0, 0, 0);
+}
+
+.o {
+    color: rgb(224, 48, 48);
+}
+
+.resetGame{
+    display: none; /*poner en flex desde javascript*/
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 300px;
+    height: 80px;
+    font-size: 2rem;
+    font-family: 'titleFont', sans-serif;
+    border: none;
+    cursor: pointer;
+    border: 5px rgb(14, 71, 121) solid;
+}
+
