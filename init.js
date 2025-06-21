@@ -32,17 +32,57 @@ function clickFuncionalitySquare() {
 }
 
 function paintToken(square, turn) {
-    if (turn == 1) {
+    
+    if (turn == 1 && !square.classList.contains('x') && !square.classList.contains('o')) {
         square.innerHTML = 'X';
         square.classList.add('x');
         turn--;
-
     }
-    else if (turn === 0) {
+    else if (turn === 0 && !square.classList.contains('x') && !square.classList.contains('o')) {
         square.innerHTML = 'O';
         square.classList.add('o');
-        turn++;
+        turn++;        
     }
-
+    checkLines();
     return turn
+}
+
+function checkLines(){
+    if (checkWiner('x')) {
+        alert("X Wins!!");
+        
+    }
+    if (checkWiner('o')) {
+        alert("O Wins!!");
+    }
+    
+}
+
+function checkWiner(classToken) {
+    const squares = document.querySelectorAll('.square');
+
+    if (squares[0].classList.contains(classToken) && squares[1].classList.contains(classToken) && squares[2].classList.contains(classToken)) {
+        return true;
+    } 
+    else if (squares[3].classList.contains(classToken) && squares[4].classList.contains(classToken) && squares[5].classList.contains(classToken)) {
+        return true;
+    }
+    else if (squares[6].classList.contains(classToken) && squares[7].classList.contains(classToken) && squares[8].classList.contains(classToken)) {
+        return true;
+    }
+    else if (squares[0].classList.contains(classToken) && squares[3].classList.contains(classToken) && squares[6].classList.contains(classToken)) {
+        return true;
+    }
+    else if (squares[1].classList.contains(classToken) && squares[4].classList.contains(classToken) && squares[7].classList.contains(classToken)) {
+        return true;
+    }
+    else if (squares[2].classList.contains(classToken) && squares[5].classList.contains(classToken) && squares[8].classList.contains(classToken)) {
+        return true;
+    }
+    else if (squares[0].classList.contains(classToken) && squares[4].classList.contains(classToken) && squares[8].classList.contains(classToken)) {
+        return true;
+    }
+    else if (squares[2].classList.contains(classToken) && squares[4].classList.contains(classToken) && squares[6].classList.contains(classToken)) {
+        return true;
+    }
 }
