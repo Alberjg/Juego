@@ -14,13 +14,13 @@
     </header>
     <main class="containerGame">
         <div class="containerOptions">
-            <form action="" class="fromOptions">
+            <form class="fromOptions">
                 <div class="containerFormOptions">
                     Playing with the machine <input type="checkbox" class="machineMode" checked>
                     <h2>Game Tokens</h2>
                     <div class="playerToken">
                         <h3>Player 1</h3>
-                        <select name="player1GameToken" class="boxToken">
+                        <select name="player1GameToken" class="boxToken tokenPlayer1">
                             <option value="x">X</option>
                             <option value="o">O</option>
                             
@@ -28,12 +28,12 @@
                     </div>
                     <div class="playerToken">
                         <h3>Player 2</h3> 
-                        <select name="player2GameToken" class="boxToken">
+                        <select name="player2GameToken" class="boxToken tokenPlayer2">
                             <option value="o">O</option>
                             <option value="x">X</option>
                         </select>
                     </div>
-                    <button class="buttonStart">Start the Game</button>
+                    <button class="buttonStart" type="submit">Start the Game</button>
                 </div>
             </form>
         </div>
@@ -41,10 +41,11 @@
         <div class="game">
             <div class="player">
                 <h2>Player 1</h2>
-                <h3 id="scorePlayer1">0</h3>
+                <h3 class="scorePlayer1">0</h3>
             </div>
 
             <div class="board">
+                <div class="square square0"></div>
                 <div class="square square1"></div>
                 <div class="square square2"></div>
                 <div class="square square3"></div>
@@ -53,12 +54,11 @@
                 <div class="square square6"></div>
                 <div class="square square7"></div>
                 <div class="square square8"></div>
-                <div class="square square9"></div>
             </div>
 
             <div class="player">
                 <h2>Player 2</h2>
-                <h3 id="scorePlayer2">0</h3>
+                <h3 class="scorePlayer2">0</h3>
             </div>
         </div>
         <button class="resetGame">Reset Game</button>
