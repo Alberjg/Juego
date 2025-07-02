@@ -44,7 +44,7 @@ function clickFuncionalitySquare(gameInfo) {
     const squares = document.querySelectorAll('.square');
     let turn = 2;
     let scoreboard = [];
-
+    let turnMachine = 1;
 
     squares.forEach(square => {
         square.addEventListener('click', (event) => {
@@ -52,10 +52,19 @@ function clickFuncionalitySquare(gameInfo) {
 
             turn = resPaintToken[0];
             scoreboard = resPaintToken[1];
+
             paintScoreBoard(scoreboard);
         });
 
     });
+
+    // if (gameInfo.machine && turnMachine == 1) {
+    //     let cube = document.querySelector('.square0');
+
+    //     cube.cliclk();
+    //     turnMachine--;
+
+    // }
 
 }
 
@@ -77,12 +86,22 @@ function paintToken(square, turn, gameInfo, scoreboard, squares) {
         }
 
     }
+    
     if (turn == 1 && !square.classList.contains('x') && !square.classList.contains('o')) {
+
         square.innerHTML = 'x';
         square.classList.add('x');
         turn--;
+        // Saber si el check de computer esta activado
+        if (gameInfo.machine) {
+            turn = playMachine(turn);
+            console.log('Aqui no deberia de llegar todavia')
+        }
+
+
     }
-    else if (turn === 0 && !square.classList.contains('x') && !square.classList.contains('o')) {
+    else if (turn === 0 && !square.classList.contains('x') && !square.classList.contains('o') && !gameInfo.machine) {
+        
         square.innerHTML = 'o';
         square.classList.add('o');
         turn++;
@@ -93,6 +112,36 @@ function paintToken(square, turn, gameInfo, scoreboard, squares) {
 
     return [turn, scoreboard]
 }
+
+function randomNumber() {
+    const NUMBER_POSITIONS = 9
+    return Math.floor(Math.random() * NUMBER_POSITIONS);
+}
+
+
+function playMachine(turn) {
+
+    let num = randomNumber();
+
+
+
+    let squarePaint = document.querySelector('.square' + num);
+
+  
+    if(squarePaint.classList.contains('o') || squarePaint.classList.contains('x')){
+        playMachine(turn);
+        console.log('iguala');
+        return
+        
+    }
+    console.log('AQUI NO ENTRA JUSTO DESPUES DEL IGUALA')
+    squarePaint.innerHTML = "o";
+    squarePaint.classList.add('o');
+    turn++;
+    
+    return turn;
+}
+
 
 function checkLines(scoreboard, squares) {
 
