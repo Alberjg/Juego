@@ -1,6 +1,7 @@
 startGame();
 
 // Una rama, Una Pull Request --> Crear una funcion que sea la que dibuje el tablero
+// Una rama, Una PR --> Mover correctamente los players
 // Una rama, Una PR --> Eliminar nombres no validos --> buttonResetFuncionality --> resetGame
 // Una rama, Una PR --> Eliminar el while
 // Una rama, Una PR --> Modal Has ganado
@@ -13,6 +14,7 @@ startGame();
 function startGame() {
     const form = document.querySelector(".from-options");
     form.addEventListener("submit", getForm);
+   
 }
 
 function getForm(event) {
@@ -41,7 +43,8 @@ function getForm(event) {
 }
 
 function disableOptionsEnableBoard(gameInfo) {
-
+    /*llamar funcion add-create-board?????*/
+    createBoard();
     const options = document.querySelector('.container-options');
     const board = document.querySelector('.game');
     const buttonReset = document.querySelector('.reset-game');
@@ -115,7 +118,7 @@ function paintToken(paintTokenInfo) {
 
 
     }
-    else if (copyTurn== 0 && !paintTokenInfo.square.classList.contains('x') && !paintTokenInfo.square.classList.contains('o') && !paintTokenInfo.gameInfo.machine) {
+    else if (copyTurn == 0 && !paintTokenInfo.square.classList.contains('x') && !paintTokenInfo.square.classList.contains('o') && !paintTokenInfo.gameInfo.machine) {
 
         paintTokenInfo.square.innerHTML = 'o';
         paintTokenInfo.square.classList.add('o');
@@ -177,10 +180,10 @@ function checkLines(scoreboard, squares) {
 function checkWiner(classToken) {
     const squares = document.querySelectorAll('.square');
 
-    const winningLines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-    
+    const winningLines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+
     for (let i = 0; i < winningLines.length; i++) {
-        
+
         if (checkWiningLines(squares, winningLines[i], classToken)) {
             return true;
         }
@@ -243,6 +246,21 @@ function clearBoard(squares) {
 }
 
 function createWinsModal() {
-    
-    
+
+
+}
+
+function createBoard() {
+    let game = document.querySelector(".game");
+    let board = document.createElement("div");
+    board.classList.add("board");
+    game.appendChild(board);
+    for (let i = 0; i <= 8; i++) {
+        const square = document.createElement('div')
+        square.classList.add('square');
+        square.classList.add(`square${i}`)
+        board.appendChild(square)
+
+    }
+
 }
