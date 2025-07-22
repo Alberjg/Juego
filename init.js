@@ -1,35 +1,50 @@
 startGame();
 
+// Una rama, Una Pull Request --> Crear una funcion que sea la que dibuje el tablero
+// Una rama, Una PR --> Eliminar nombres no validos --> buttonResetFuncionality --> resetGame
+// Una rama, Una PR --> Eliminar el while
+// Una rama, Una PR --> Modal Has ganado
+// Una rama, Una PR --> Modal Has Perdido
+
+
+// CUANDO HAYAS CORREGIDO TODO LO QUE TE HE COMENTADO....
+// TENDREMOS QUE DIVIDIRLO EN MAS DE 1 ARCHIVO
+
 function startGame() {
-    const form = document.querySelector(".fromOptions");
+    const form = document.querySelector(".from-options");
     form.addEventListener("submit", getForm);
 }
 
 function getForm(event) {
     event.preventDefault();
-    const machine = document.querySelector(".machineMode").checked;
-    const tokenPlayer1 = document.querySelector(".tokenPlayer1").value;
-    const tokenPlayer2 = document.querySelector(".tokenPlayer2").value;
 
-    const gameInfo = {
-        machine: machine,
-        player1: tokenPlayer1,
-        player2: tokenPlayer2,
-    }
+    const tokenPlayer1 = document.querySelector(".token-player1").value;
+    const tokenPlayer2 = document.querySelector(".token-player2").value;
 
-    if (tokenPlayer1 != tokenPlayer2) {
+    if (tokenPlayer1 !== tokenPlayer2) {
+        const machine = document.querySelector(".machine-mode").checked;
+
+        const gameInfo = {
+            machine: machine,
+            player1: tokenPlayer1,
+            player2: tokenPlayer2,
+        }
+
         disableOptionsEnableBoard(gameInfo);
     }
+    // Intenta sustituir else por if - return (Early return)
     else {
+        // Alerta Fuera
         alert("Player 1's token must be different from player 2's.");
     }
 
 }
 
 function disableOptionsEnableBoard(gameInfo) {
-    const options = document.querySelector('.containerOptions');
+
+    const options = document.querySelector('.container-options');
     const board = document.querySelector('.game');
-    const buttonReset = document.querySelector('.resetGame');
+    const buttonReset = document.querySelector('.reset-game');
 
     options.style.display = 'none';
     board.style.display = 'flex';
@@ -44,73 +59,72 @@ function clickFuncionalitySquare(gameInfo) {
     const squares = document.querySelectorAll('.square');
     let turn = 2;
     let scoreboard = [];
-    let turnMachine = 1;
 
     squares.forEach(square => {
         square.addEventListener('click', (event) => {
-            let resPaintToken = paintToken(square, turn, gameInfo, scoreboard, squares);
+            // https://github.com/ryanmcdermott/clean-code-javascript
+            let paintTokenInfo = {
+                square: square,
+                turn: turn,
+                gameInfo: gameInfo,
+                scoreboard: scoreboard,
+                squares: squares,
+            }
+            let responsePaintToken = paintToken(paintTokenInfo);
 
-            turn = resPaintToken[0];
-            scoreboard = resPaintToken[1];
+            turn = responsePaintToken[0];
+            scoreboard = responsePaintToken[1];
 
             paintScoreBoard(scoreboard);
         });
 
     });
 
-    // if (gameInfo.machine && turnMachine == 1) {
-    //     let cube = document.querySelector('.square0');
-
-    //     cube.cliclk();
-    //     turnMachine--;
-
-    // }
-
 }
 
-function paintToken(square, turn, gameInfo, scoreboard, squares) {
+function paintToken(paintTokenInfo) {
 
-    if (turn == 2) {
+    // TODO ESTO DIVIDIR EN FUNCIONES MAS PEQUEÑAS
+    let copyTurn = paintTokenInfo.turn;
+    if (copyTurn == 2) {
 
-        let scorePlayer1 = document.querySelector('.scorePlayer1');
-        let scorePlayer2 = document.querySelector('.scorePlayer2');
-        if (gameInfo.player1 == 'x') {
-            turn = 1;
-            scorePlayer1.classList.add('tokenX');
-            scorePlayer2.classList.add('tokenO');
+        const scorePlayer1 = document.querySelector('.score-player1');
+        const scorePlayer2 = document.querySelector('.score-player2');
+        if (paintTokenInfo.gameInfo.player1 == 'x') {
+            copyTurn = 1;
+            scorePlayer1.classList.add('token-x');
+            scorePlayer2.classList.add('token-o');
         }
         else {
-            turn = 0;
-            scorePlayer1.classList.add('tokenO');
-            scorePlayer2.classList.add('tokenX');
+            copyTurn = 0;
+            scorePlayer1.classList.add('token-o');
+            scorePlayer2.classList.add('token-x');
         }
 
     }
-    
-    if (turn == 1 && !square.classList.contains('x') && !square.classList.contains('o')) {
 
-        square.innerHTML = 'x';
-        square.classList.add('x');
-        turn--;
-        // Saber si el check de computer esta activado
-        if (gameInfo.machine) {
-            turn = playMachine(turn);
-            console.log('Aqui no deberia de llegar todavia')
+    if (copyTurn == 1 && !paintTokenInfo.square.classList.contains('x') && !paintTokenInfo.square.classList.contains('o')) {
+
+        paintTokenInfo.square.innerHTML = 'x';
+        paintTokenInfo.square.classList.add('x');
+        copyTurn--;
+
+        if (paintTokenInfo.gameInfo.machine) {
+            copyTurn = playMachine(copyTurn);
         }
 
 
     }
-    else if (turn === 0 && !square.classList.contains('x') && !square.classList.contains('o') && !gameInfo.machine) {
-        
-        square.innerHTML = 'o';
-        square.classList.add('o');
-        turn++;
+    else if (copyTurn== 0 && !paintTokenInfo.square.classList.contains('x') && !paintTokenInfo.square.classList.contains('o') && !paintTokenInfo.gameInfo.machine) {
+
+        paintTokenInfo.square.innerHTML = 'o';
+        paintTokenInfo.square.classList.add('o');
+        copyTurn++;
     }
 
+    let copyScoreboard = checkLines(paintTokenInfo.scoreboard, paintTokenInfo.squares);
 
-    scoreboard = checkLines(scoreboard, squares);
-
-    return [turn, scoreboard]
+    return [copyTurn, copyScoreboard]
 }
 
 function randomNumber() {
@@ -121,85 +135,78 @@ function randomNumber() {
 
 function playMachine(turn) {
 
-    let num = randomNumber();
+    let number = randomNumber();
+    let count = 0;
 
+    let squarePaint = document.querySelector('.square' + number);
 
-
-    let squarePaint = document.querySelector('.square' + num);
-
-  
-    if(squarePaint.classList.contains('o') || squarePaint.classList.contains('x')){
-        playMachine(turn);
-        console.log('iguala');
-        return
-        
+    // Buscamos alternativa al while
+    while ((squarePaint.classList.contains('o') || squarePaint.classList.contains('x')) && count < 9) {
+        number = randomNumber();
+        squarePaint = document.querySelector('.square' + number);
+        count++;
     }
-    console.log('AQUI NO ENTRA JUSTO DESPUES DEL IGUALA')
+
     squarePaint.innerHTML = "o";
     squarePaint.classList.add('o');
     turn++;
-    
+
     return turn;
 }
 
 
 function checkLines(scoreboard, squares) {
-
+    let copyScoreboard = scoreboard;
+    // En la medida de lo posible, eliminamos los if-else-if y los if-else
     if (checkWiner('x')) {
+        // Alerts por Modals
         alert("X Wins!!");
-        scoreboard = addPoints('x', scoreboard);
+        copyScoreboard = addPoints('x', scoreboard);
         clearBoard(squares);
 
     }
-    else if (checkWiner('o')) {
+    if (checkWiner('o')) {
+        // Alerts por Modals
         alert("O Wins!!");
-        scoreboard = addPoints('o', scoreboard);
+        copyScoreboard = addPoints('o', scoreboard);
         clearBoard(squares)
     }
-    return scoreboard;
+    return copyScoreboard;
 }
 
 function checkWiner(classToken) {
     const squares = document.querySelectorAll('.square');
 
-    if (squares[0].classList.contains(classToken) && squares[1].classList.contains(classToken) && squares[2].classList.contains(classToken)) {
-        return true;
+    const winningLines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    
+    for (let i = 0; i < winningLines.length; i++) {
+        
+        if (checkWiningLines(squares, winningLines[i], classToken)) {
+            return true;
+        }
     }
-    else if (squares[3].classList.contains(classToken) && squares[4].classList.contains(classToken) && squares[5].classList.contains(classToken)) {
-        return true;
-    }
-    else if (squares[6].classList.contains(classToken) && squares[7].classList.contains(classToken) && squares[8].classList.contains(classToken)) {
-        return true;
-    }
-    else if (squares[0].classList.contains(classToken) && squares[3].classList.contains(classToken) && squares[6].classList.contains(classToken)) {
-        return true;
-    }
-    else if (squares[1].classList.contains(classToken) && squares[4].classList.contains(classToken) && squares[7].classList.contains(classToken)) {
-        return true;
-    }
-    else if (squares[2].classList.contains(classToken) && squares[5].classList.contains(classToken) && squares[8].classList.contains(classToken)) {
-        return true;
-    }
-    else if (squares[0].classList.contains(classToken) && squares[4].classList.contains(classToken) && squares[8].classList.contains(classToken)) {
-        return true;
-    }
-    else if (squares[2].classList.contains(classToken) && squares[4].classList.contains(classToken) && squares[6].classList.contains(classToken)) {
+}
+
+function checkWiningLines(squares, lines, classToken) {
+    if (squares[lines[0]].classList.contains(classToken) && squares[lines[1]].classList.contains(classToken) && squares[lines[2]].classList.contains(classToken)) {
         return true;
     }
 }
 
 function addPoints(player, scoreboard) {
-    scoreboard.push(player);
-    return scoreboard;
+    let copyScoreboard = scoreboard;
+    copyScoreboard.push(player);
+    return copyScoreboard;
 }
 
 function buttonResetFuncionality() {
-    const buttonReset = document.querySelector('.resetGame');
+    const buttonReset = document.querySelector('.reset-game');
     buttonReset.addEventListener('click', resetGame);
 
 }
 
 function resetGame() {
+    // MODAL
     let reset = confirm("Do you want to restart the game?");
 
     if (reset) {
@@ -211,6 +218,7 @@ function paintScoreBoard(scoreboard) {
     let tokenX = 0;
     let tokenO = 0;
     scoreboard.forEach(token => {
+
         if (token == 'x') {
             tokenX++;
         }
@@ -219,8 +227,8 @@ function paintScoreBoard(scoreboard) {
         }
     });
 
-    let playerTokenX = document.querySelector('.tokenX');
-    let playerTokenO = document.querySelector('.tokenO');
+    let playerTokenX = document.querySelector('.token-x');
+    let playerTokenO = document.querySelector('.token-o');
 
     playerTokenX.innerHTML = tokenX;
     playerTokenO.innerHTML = tokenO;
@@ -232,4 +240,9 @@ function clearBoard(squares) {
         square.classList.remove('x');
         square.classList.remove('o');
     });
+}
+
+function createWinsModal() {
+    
+    
 }
