@@ -8,7 +8,10 @@
     src: url('fonts/DogRough.otf');
 }
 
+/* LOS STYLES TAMBIEN LOS DIVIDIMOS COMO MINIMO EN 2 ARCHIVOS --> reset.css, styles.css */
+
 * {
+    /* El background color fuera de * */
     background-color: rgb(178, 182, 233);
     padding: 0;
     margin: 0;
@@ -16,19 +19,19 @@
     font-weight: normal;
 }
 
-.gameTitle {
+.game-title {
     text-align: center;
     font-family: 'titleFont', sans-serif;
     font-size: 6rem;
     color: rgb(1, 0, 22);
     margin: 20px;
 }
-.containerGame{
+.container-game{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.containerOptions{
+.container-options{
     display: flex; /*poner en none desde javascript*/
     justify-content: center;
     align-items: center;
@@ -39,20 +42,20 @@
     border: 10px solid rgb(14, 71, 121);
 }
 
-.containerFormOptions{
+.container-form-options{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.machineMode{
+.machine-mode{
     width: 40px;
     height: 40px;
     margin-bottom: 40px;
 }
 
-.playerToken{
+.player-token{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +65,7 @@
 
 }
 
-.buttonStart{
+.button-start{
     width: 300px;
     height: 80px;
     font-size: 2rem;
@@ -106,7 +109,7 @@
     color: rgb(224, 48, 48);
 }
 
-.resetGame{
+.reset-game{
     display: none; /*poner en flex desde javascript*/
     justify-content: center;
     align-items: center;
