@@ -32,7 +32,8 @@ function getForm(event) {
             player2: tokenPlayer2,
         }
 
-        disableOptionsEnableBoard(gameInfo);
+        disableOptionsEnableBoard();
+        createBoard(gameInfo);
     }
     // Intenta sustituir else por if - return (Early return)
     else {
@@ -42,9 +43,7 @@ function getForm(event) {
 
 }
 
-function disableOptionsEnableBoard(gameInfo) {
-    /*llamar funcion add-create-board?????*/
-    createBoard();
+function disableOptionsEnableBoard() {
     const options = document.querySelector('.container-options');
     const board = document.querySelector('.game');
     const buttonReset = document.querySelector('.reset-game');
@@ -53,9 +52,43 @@ function disableOptionsEnableBoard(gameInfo) {
     board.style.display = 'flex';
     buttonReset.style.display = 'block';
 
+    
+}
+
+function createBoard(gameInfo) {
+    let game = document.querySelector(".game");
+    createPlayerScore(game,"1");
+    let board = document.createElement("div");
+    board.classList.add("board");
+    game.appendChild(board);
+    for (let i = 0; i <= 8; i++) {
+        const square = document.createElement('div')
+        square.classList.add('square');
+        square.classList.add(`square${i}`)
+        board.appendChild(square)
+
+    }
+    createPlayerScore(game,"2");
     clickFuncionalitySquare(gameInfo);
     buttonResetFuncionality();
+
 }
+
+
+function createPlayerScore(game, playerNumber){
+    let player = document.createElement("div");
+    player.classList.add("player");
+    let namePlayer = document.createElement("h2");
+    namePlayer.innerHTML= `Player ${playerNumber}`;
+    player.appendChild(namePlayer);
+    let scorePlayer = document.createElement("h3");
+    scorePlayer.classList.add(`score-player${playerNumber}`);
+    scorePlayer.innerHTML= "0";
+    player.appendChild(scorePlayer);
+    
+    game.appendChild(player);
+}
+
 
 
 function clickFuncionalitySquare(gameInfo) {
@@ -250,17 +283,3 @@ function createWinsModal() {
 
 }
 
-function createBoard() {
-    let game = document.querySelector(".game");
-    let board = document.createElement("div");
-    board.classList.add("board");
-    game.appendChild(board);
-    for (let i = 0; i <= 8; i++) {
-        const square = document.createElement('div')
-        square.classList.add('square');
-        square.classList.add(`square${i}`)
-        board.appendChild(square)
-
-    }
-
-}
