@@ -230,11 +230,11 @@ function playMachine(turn) {
     count++;
   }
 
-  setTimeout(() => {
+  // setTimeout(() => {
     squarePaint.innerHTML = "o";
     squarePaint.classList.add("o");
     turn++;
-  }, TIMEOUT);
+  // }, TIMEOUT);
 
   return turn;
 }
@@ -262,17 +262,17 @@ function infoToModal(symbol) {
   box.classList.add("box-modal");
 
   const nameWinner = document.createElement("h2");
-  // nameWinner.classList.add("nameWinner");
-
+  nameWinner.classList.add("modal-text");
   nameWinner.innerHTML = `The winner is ${symbol}!!`;
+  box.appendChild(nameWinner);
 
   const buttonContinueGame = document.createElement("button");
-  // buttonContinueGame.classList.add("buttonContinueGame");
   buttonContinueGame.innerHTML = "Continue The Game";
+  buttonContinueGame.classList.add("modal-buttons");
   buttonContinueGame.addEventListener("click", continueGame);
   box.appendChild(buttonContinueGame);
 
-  box.appendChild(nameWinner);
+  
 
   modal(box);
 }
