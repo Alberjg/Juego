@@ -1,72 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tic-tac-toe</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
+  <body class="page">
     <header>
-        <h1 class="game-title">TIC-TAC-TOE</h1>
+      <h1 class="game-title">TIC-TAC-TOE</h1>
     </header>
-    <!-- TODAS LAS CLASES CON GUIONES PARECIDO A Estandar BEM -->
     <main class="container-game">
-        <div class="container-options">
-            <form class="from-options">
-                <div class="container-form-options">
-                    Playing with the machine <input type="checkbox" class="machine-mode" checked>
-                    <h2>Game Tokens</h2>
-                    <div class="player-token">
-                        <h3>Player 1</h3>
-                        <!-- LE DAMOS ESTILOS A LOS SELECTS -->
-                        <select name="player1GameToken" class="box-token token-player1">
-                            <option value="x">X</option>
-                            <option value="o">O</option>
-                            
-                        </select>
-                    </div>
-                    <div class="player-token">
-                        <h3>Player 2</h3> 
-                        <select name="player2GameToken" class="box-token token-player2">
-                            <option value="o">O</option>
-                            <option value="x">X</option>
-                        </select>
-                    </div>
-                    <button class="button-start" type="submit">Start the Game</button>
-                </div>
-            </form>
-        </div>
+      <div class="container-options">
+        <form class="from-options">
+          <div class="container-form-options">
+            Playing with the machine
+            <input type="checkbox" class="machine-mode" checked />
+            <h2>Game Tokens</h2>
+            <div class="player-token">
+              <h3>Player 1</h3>
+              <!-- LE DAMOS ESTILOS A LOS SELECTS -->
+              <select name="player1GameToken" class="box-token token-player1 buttons-selects">
+                <option class="buttons-selects" value="x">X</option>
+                <option class="buttons-selects" value="o">O</option>
+              </select>
+            </div>
+            <div class="player-token">
+              <h3>Player 2</h3>
+              <select name="player2GameToken" class="box-token token-player2 buttons-selects">
+                <option class="buttons-selects" value="o">O</option>
+                <option class="buttons-selects" value="x">X</option>
+              </select>
+            </div>
+            <button class="button-start buttons-selects" type="submit">Start the Game</button>
+          </div>
+        </form>
+      </div>
 
-        <div class="game">
-            <!-- <div class="player">
-                <h2>Player 1</h2>
-                <h3 class="score-player1">0</h3>
-            </div> -->
-
-            <!-- <div class="board">
-                <div class="square square0"></div>
-                <div class="square square1"></div>
-                <div class="square square2"></div>
-                <div class="square square3"></div>
-                <div class="square square4"></div>
-                <div class="square square5"></div>
-                <div class="square square6"></div>
-                <div class="square square7"></div>
-                <div class="square square8"></div>
-            </div> -->
-<!-- 
-            <div class="player">
-                <h2>Player 2</h2>
-                <h3 class="score-player2">0</h3>
-            </div> -->
-        </div>
-        <button class="reset-game">Reset Game</button>
-
+      <div class="game"></div>
+      <button class="reset-game buttons-selects">Reset Game</button>
     </main>
     <script src="init.js"></script>
-</body>
-
+  </body>
 </html>

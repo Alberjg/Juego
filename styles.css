@@ -1,125 +1,155 @@
 @font-face {
-    font-family: 'titleFont';
-    src: url('fonts/SuperAdorable.ttf');
+  font-family: "titleFont";
+  src: url("fonts/SuperAdorable.ttf");
 }
 
 @font-face {
-    font-family: 'simbols';
-    src: url('fonts/DogRough.otf');
+  font-family: "simbols";
+  src: url("fonts/DogRough.otf");
 }
 
 /* LOS STYLES TAMBIEN LOS DIVIDIMOS COMO MINIMO EN 2 ARCHIVOS --> reset.css, styles.css */
 
 * {
-    /* El background color fuera de * */
-    background-color: rgb(178, 182, 233);
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-weight: normal;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-weight: normal;
+}
+
+.page{
+  background-color: rgb(178, 182, 233);
 }
 
 .game-title {
-    text-align: center;
-    font-family: 'titleFont', sans-serif;
-    font-size: 6rem;
-    color: rgb(1, 0, 22);
-    margin: 20px;
-}
-.container-game{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.container-options{
-    display: flex; /*poner en none desde javascript*/
-    justify-content: center;
-    align-items: center;
-    font-family: 'titleFont', sans-serif;
-    font-size: 3rem;
-    width: 700px;
-    height: 700px;
-    border: 10px solid rgb(14, 71, 121);
+  text-align: center;
+  font-family: "titleFont", sans-serif;
+  font-size: 6rem;
+  color: rgb(1, 0, 22);
+  margin: 20px;
 }
 
-.container-form-options{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.container-game {
+  background-color: rgb(178, 182, 233); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.machine-mode{
-    width: 40px;
-    height: 40px;
-    margin-bottom: 40px;
+.container-options {
+  display: flex; /*poner en none desde javascript*/
+  justify-content: center;
+  align-items: center;
+  font-family: "titleFont", sans-serif;
+  font-size: 3rem;
+  width: 700px;
+  height: 700px;
+  border: 10px solid rgb(14, 71, 121);
 }
 
-.player-token{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 80px;
-    font-size: 2rem;
-
+.container-form-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.button-start{
-    width: 300px;
-    height: 80px;
-    font-size: 2rem;
-    font-family: 'titleFont', sans-serif;
-    border: none;
-    cursor: pointer;
-    border: 5px rgb(14, 71, 121) solid;
-    margin: 10px;
+.machine-mode {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 40px;
+}
+
+.player-token {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 80px;
+  font-size: 2rem;
+}
+
+.buttons-selects{
+  background-color: rgb(178, 182, 233);
+}
+
+.button-start {
+  width: 300px;
+  height: 80px;
+  font-size: 2rem;
+  font-family: "titleFont", sans-serif;
+  border: none;
+  cursor: pointer;
+  border: 5px rgb(14, 71, 121) solid;
+  margin: 10px;
 }
 
 .game {
-    display: none; /* poner en flex desde javascript*/
-    justify-content: space-between;
-    padding: 20px;
+  display: none; /* poner en flex desde javascript*/
+  justify-content: space-between;
+  padding: 20px;
 }
 
 .board {
-    display: flex;
-    flex-wrap: wrap;
-    width: 700px;
-    height: 700px;
-    /* border: 5px solid rgb(14, 71, 121); */
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  height: 700px;
+  /* border: 5px solid rgb(14, 71, 121); */
 }
 
 .square {
-    width: 33.33%;
-    height: 33.33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15rem;
-    font-family: 'simbols', sans-serif;
-    border: 5px solid rgb(14, 71, 121);
+  width: 33.33%;
+  height: 33.33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15rem;
+  font-family: "simbols", sans-serif;
+  border: 5px solid rgb(14, 71, 121);
 }
 
 .x {
-    color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
 .o {
-    color: rgb(224, 48, 48);
+  color: rgb(224, 48, 48);
 }
 
-.reset-game{
-    display: none; /*poner en flex desde javascript*/
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    width: 300px;
-    height: 80px;
-    font-size: 2rem;
-    font-family: 'titleFont', sans-serif;
-    border: none;
-    cursor: pointer;
-    border: 5px rgb(14, 71, 121) solid;
+.reset-game {
+  display: none; /*poner en flex desde javascript*/
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 300px;
+  height: 80px;
+  font-size: 2rem;
+  font-family: "titleFont", sans-serif;
+  border: none;
+  cursor: pointer;
+  border: 5px rgb(14, 71, 121) solid;
 }
 
+.blurred-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.336);
+}
+
+.box-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  width: 350px;
+  height: 220px;
+}
